@@ -70,8 +70,8 @@ jobs:
         with:
           images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
           tags: |
-            type=sha,format=long,prefix={{date 'Y-MM-DDTHH-mm-ss[Z]'}}
             type=raw,value=latest
+            type=sha,format=long,prefix={{date 'Y-MM-DDTHH-mm-ss[Z]'}}_
 
       # Build and push Docker image with Buildx (don't push on PR)
       # https://github.com/docker/build-push-action
