@@ -1,0 +1,108 @@
+# Please prepare thest files youself before running the container
+# .
+# ├── ssh
+# │   ├── authorized_keys          - Contains public key from Cloud Studio at least to let Cloud Studio be able to connect
+# │   ├── id_ed25519               - pin the private key of root to let you manage the authentication with any git platfrom
+# │   └── id_ed25519.pub           - pin the public key of root to let you manage the authentication with any git platfrom
+# └── sshd
+#     ├── sshd_config.d
+#     │   └── cloudstudio.conf     - There is a sample `cloudstudio.conf` in this repo, you can tweak it
+#     ├── ssh_host_ecdsa_key       - pin the keys of the container to let you be able to connect to it without error throwed.
+#     ├── ssh_host_ecdsa_key.pub
+#     ├── ssh_host_ed25519_key
+#     ├── ssh_host_ed25519_key.pub
+#     ├── ssh_host_rsa_key
+#     └── ssh_host_rsa_key.pub
+
+version: '3'
+services:
+  cloudstudio:
+    image: nnangela/cloudstudio_selfhosting:latest
+    restart: unless-stopped
+    hostname: cloudstudio
+    stop_grace_period: 1s # sshd don't interactive with kill signal, and can be killed safely.
+    tty: true
+    ports:
+      - target: 22
+        published: 810 # you can change this port
+        mode: host
+    volumes:
+      # log dir
+      - type: tmpfs
+        target: /var/log/sshd
+        tmpfs:
+          size: 1G
+      # the data should be storage in volume to aviod lost them
+      - type: volume
+        source: cloudstudio_resource
+        target: /root/.coding-cloudstudio
+      - type: volume
+        source: cloudstudio_localShare_cloudstudio
+        target: /root/.local/share/cloudstudio
+      - type: volume
+        source: cloudstudio_localShare_codeServer
+        target: /root/.local/share/code-server
+      - type: volume
+        source: cloudstudio_RemoteWorking
+        target: /root/RemoteWorking
+      - type: volume
+        source: cloudstudio_config
+        target: /root/.config
+      - type: volume
+        source: cloudstudio_ssh
+        target: /root/.ssh
+      # pin the prepared files mentioned above to make everything work
+      - type: bind
+        source: ssh/authorized_keys
+        target: /root/.ssh/authorized_keys
+        read_only: true
+      - type: bind
+        source: ssh/id_ed25519
+        target: /root/.ssh/id_ed25519
+        read_only: true
+      - type: bind
+        source: ssh/id_ed25519.pub
+        target: /root/.ssh/id_ed25519.pub
+        read_only: true
+      - type: bind
+        source: sshd/sshd_config.d/cloudstudio.conf
+        target: /etc/ssh/sshd_config.d/cloudstudio.conf
+        read_only: true
+      - type: bind
+        source: sshd/ssh_host_ecdsa_key
+        target: /etc/ssh/ssh_host_ecdsa_key
+        read_only: true
+      - type: bind
+        source: sshd/ssh_host_ecdsa_key.pub
+        target: /etc/ssh/ssh_host_ecdsa_key.pub
+        read_only: true
+      - type: bind
+        source: sshd/ssh_host_ed25519_key
+        target: /etc/ssh/ssh_host_ed25519_key
+        read_only: true
+      - type: bind
+        source: sshd/ssh_host_ed25519_key.pub
+        target: /etc/ssh/ssh_host_ed25519_key.pub
+        read_only: true
+      - type: bind
+        source: sshd/ssh_host_rsa_key
+        target: /etc/ssh/ssh_host_rsa_key
+        read_only: true
+      - type: bind
+        source: sshd/ssh_host_rsa_key.pub
+        target: /etc/ssh/ssh_host_rsa_key.pub
+        read_only: true
+# volume should be managed externally
+volumes:
+  cloudstudio_resource:
+    external: true
+  cloudstudio_localShare_cloudstudio:
+    external: true
+  cloudstudio_localShare_codeServer:
+    external: true
+  cloudstudio_RemoteWorking:
+    external: true
+  cloudstudio_config:
+    external: true
+  cloudstudio_ssh:
+    external: true
