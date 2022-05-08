@@ -10,7 +10,7 @@ mkdir -p /root/.coding-cloudstudio
 rm -f /etc/update-motd.d/60-unminimize
 
 apt update
-apt install -y -o "Dpkg::Options::=--force-confold" software-properties-common curl wget ca-certificates gnupg lsb-release nano openssh-server openssh-client git
+apt install -y -o "Dpkg::Options::=--force-confold" software-properties-common curl wget ca-certificates nano openssh-server openssh-client git
 
 add-apt-repository ppa:ondrej/php
 apt update
