@@ -8,11 +8,11 @@ This image is based on Ubuntu 18.04 bionic latest image [which is the highest ve
 
 |                software | version                                                                                                |
 | ----------------------: | ------------------------------------------------------------------------------------------------------ |
-| openssh server & client | latest version available from Ubuntu 18.04 bionic APT repository                                       |
+| openssh server & client | latest version available from Ubuntu 18.04 bionic apt repository                                       |
 |                    node | latest lts version using [nodejs version manager `n`](https://github.com/tj/n)                         |
 |                     npm | latest version (explicitly set environment variabl `N_PRESERVE_NPM` to `1`  in `sh/npm.sh`)            |
 |                     php | latest current stable version from [ppa:ondrej/php](https://launchpad.net/~ondrej/+archive/ubuntu/php) |
-|                 python3 | latest v3 version from [ppa:deadsnakes/ppa](https://launchpad.net/~deadsnakes/+archive/ubuntu/ppa)     |
+|                 python3 | latest 3.10 version from apt universe repository                                                       |
 
 ## docker compose detail
 

@@ -7,9 +7,9 @@ RUN /bin/bash -c '\
     apt update ; \
     apt install -y -o "Dpkg::Options::=--force-confold" software-properties-common; \
     add-apt-repository ppa:ondrej/php; \
-    add-apt-repository ppa:deadsnakes/ppa; \
+    add-apt-repository universe; \
     apt update ; \
-    apt install -y -o "Dpkg::Options::=--force-confold" curl wget ca-certificates nano openssh-server openssh-client git php-apcu php-bcmath php-bz2 php-curl php-fpm php-gd php-igbinary php-imagick php-intl php-json php-mbstring php-mysql php-pear php-pgsql php-redis php-ssh2 php-xml php-zip php python3 python2- libapache2-mod-php8.1- php-apcu-bc- php7.4-common- php7.3-common- php7.2-common- php7.1-common- php7.0-common- php5.6-common- ; \
+    apt install -y -o "Dpkg::Options::=--force-confold" curl wget ca-certificates nano openssh-server openssh-client git php-apcu php-bcmath php-bz2 php-curl php-fpm php-gd php-igbinary php-imagick php-intl php-json php-mbstring php-mysql php-pear php-pgsql php-redis php-ssh2 php-xml php-zip php python3.10 - libapache2-mod-php8.1- php-apcu-bc- php7.4-common- php7.3-common- php7.2-common- php7.1-common- php7.0-common- php5.6-common- ; \
     apt pruge -y software-properties-common ; \
     apt autoremove -y ; \
     apt clean ; \
