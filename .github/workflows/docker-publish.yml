@@ -11,10 +11,12 @@ on:
     branches: [ master ]
     paths:
     - 'Dockerfile'
+    - '.github/workflows/docker-publish.yml'
   pull_request:
     branches: [ master ]
     paths:
     - 'Dockerfile'
+    - '.github/workflows/docker-publish.yml'
 
 env:
   IMAGE_NAME: annangela/cloudstudio_selfhosting
