@@ -12,10 +12,11 @@ This image is based on Ubuntu 18.04 bionic latest image [which is the highest ve
 |                    node | latest lts version using [nodejs version manager `n`](https://github.com/tj/n)                         |
 |                     npm | latest version (explicitly set environment variabl `N_PRESERVE_NPM` to `1`  in `sh/npm.sh`)            |
 |                     php | latest current stable version from [ppa:ondrej/php](https://launchpad.net/~ondrej/+archive/ubuntu/php) |
+|                 python3 | latest v3 version from [ppa:deadsnakes/ppa](https://launchpad.net/~deadsnakes/+archive/ubuntu/ppa)     |
 
 ## docker compose detail
 
-The `docker-compose.yml` file contains comment to introduce which folders and files are necessary to keep permanently, and which files should be generated before start up the container.
+The [`docker-compose.yml` file](https://github.com/AnnAngela/CloudStudioSelfHostingDockerImage/blob/master/docker-compose.yml) contains comment to introduce which folders and files are necessary to keep permanently, and which files should be generated before start up the container.
 
 Here is a checklist for you to prepare:
 
@@ -24,7 +25,7 @@ Here is a checklist for you to prepare:
 3. Generate a rsa key pair, and write it to `sshd/ssh_host_rsa_key` & `sshd/ssh_host_rsa_key.pub`;
 4. Generate a ecdsa key pair, and write it to `sshd/ssh_host_ecdsa_key` & `sshd/ssh_host_ecdsa_key.pub`;
 5. Generate a ed25519 key pair, and write it to `sshd/ssh_host_ed25519_key` & `sshd/ssh_host_ed25519_key.pub`;
-6. Check the `sshd/sshd_config.d/cloudstudio.conf` and change it if necessary;
+6. Download and check the [`sshd/sshd_config.d/cloudstudio.conf` file](https://github.com/AnnAngela/CloudStudioSelfHostingDockerImage/blob/master/sshd/sshd_config.d/cloudstudio.conf) and change it if necessary;
 7. Create the volumes:
 ```shell
 docker volume create cloudstudio_resource
