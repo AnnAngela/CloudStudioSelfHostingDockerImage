@@ -4,7 +4,6 @@ RUN /bin/bash -c '\
     export DEBIAN_PRIORITY=critical ; \
     mkdir -p /var/run/sshd /var/log/sshd /root/.ssh /etc/ssh/sshd_config.d ; \
     rm -f /etc/update-motd.d/60-unminimize ; \
-    sed -i -E "s/http:/https:/g" /etc/apt/sources.list ; \
     apt update ; \
     apt install -y -o "Dpkg::Options::=--force-confold" software-properties-common; \
     add-apt-repository ppa:ondrej/php; \
