@@ -10,7 +10,7 @@ on:
   push:
     branches: [ master ]
     paths:
-    - 'Dockerfile'
+    - '*.Dockerfile'
     - '.github/workflows/docker-base.yml'
   pull_request:
     branches: [ master ]
