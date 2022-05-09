@@ -11,12 +11,12 @@ on:
     branches: [ master ]
     paths:
     - 'Dockerfile'
-    - '.github/workflows/docker-publish.yml'
+    - '.github/workflows/docker-base.yml'
   pull_request:
     branches: [ master ]
     paths:
     - 'Dockerfile'
-    - '.github/workflows/docker-publish.yml'
+    - '.github/workflows/docker-base.yml'
 
 env:
   IMAGE_NAME: annangela/cloudstudio_selfhosting
@@ -64,6 +64,7 @@ jobs:
         uses: docker/build-push-action@v3
         with:
           context: .
+          file: base.Dockerfile
           platforms: linux/amd64
           push: ${{ github.event_name != 'pull_request' }}
           tags: ${{ steps.meta.outputs.tags }}
