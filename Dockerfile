@@ -1,9 +1,8 @@
 FROM ubuntu:bionic AS main
-COPY --from=toolman /etc/apt/sources.list.d/ondrej-ubuntu-php.list /etc/apt/sources.list.d/ondrej-ubuntu-php.list
 RUN /bin/bash -c '\
     export DEBIAN_FRONTEND=noninteractive ; \
     export DEBIAN_PRIORITY=critical ; \
-    mkdir -p /var/run/sshd /var/log/sshd /root/.ssh /etc/ssh/sshd_config.d /root/.coding-cloudstudio ; \
+    mkdir -p /var/run/sshd /var/log/sshd /root/.ssh /etc/ssh/sshd_config.d ; \
     rm -f /etc/update-motd.d/60-unminimize ; \
     sed -i -E "s/http:/https:/g" /etc/apt/sources.list ; \
     apt update ; \
