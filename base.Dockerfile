@@ -5,7 +5,7 @@ RUN /bin/bash -c '\
     mkdir -p /var/run/sshd /var/log/sshd /root/.ssh /etc/ssh/sshd_config.d ; \
     rm -f /etc/update-motd.d/60-unminimize ; \
     apt update ; \
-    apt install -y -o "Dpkg::Options::=--force-confold" curl wget ca-certificates nano openssh-server openssh-client git ; \
+    apt install -y -o "Dpkg::Options::=--force-confold" curl wget ca-certificates nano openssh-server openssh-client git libpam-systemd- ; \
     apt autoremove -y ; \
     apt clean ; \
     rm -rf /var/lib/apt/lists/* /root/.launchpadlib ; \
