@@ -6,20 +6,13 @@ name: Docker
 # documentation.
 
 on:
-  workflow_dispatch:
-  push:
-    branches: [ master ]
-    paths:
-    - 'Dockerfile'
-    - '.github/workflows/docker-publish.yml'
-  pull_request:
-    branches: [ master ]
-    paths:
-    - 'Dockerfile'
-    - '.github/workflows/docker-publish.yml'
+  workflow_run:
+    workflows: [docker-base]
+    types:
+      - completed
 
 env:
-  IMAGE_NAME: annangela/cloudstudio_selfhosting
+  IMAGE_NAME: annangela/cloudstudio_selfhosting_php
 
 jobs:
   build:
@@ -64,6 +57,7 @@ jobs:
         uses: docker/build-push-action@v3
         with:
           context: .
+          file: php.Dockerfile
           platforms: linux/amd64
           push: ${{ github.event_name != 'pull_request' }}
           tags: ${{ steps.meta.outputs.tags }}
