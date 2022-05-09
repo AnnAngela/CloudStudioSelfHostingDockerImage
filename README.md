@@ -12,7 +12,6 @@ This image is based on Ubuntu 18.04 bionic latest image [which is the highest ve
 |                    node | latest lts version using [nodejs version manager `n`](https://github.com/tj/n)                         |
 |                     npm | latest version (explicitly set environment variabl `N_PRESERVE_NPM` to `1`  in `sh/npm.sh`)            |
 |                     php | latest current stable version from [ppa:ondrej/php](https://launchpad.net/~ondrej/+archive/ubuntu/php) |
-|                 python3 | latest 3.10 version from apt universe repository                                                       |
 
 ## docker compose detail
 
