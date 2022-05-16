@@ -7,7 +7,7 @@ RUN /bin/bash -c '\
     apt update && \
     apt install -y -o "Dpkg::Options::=--force-confold" --no-install-recommends curl wget ca-certificates nano openssh-server openssh-client git libpam-systemd- && \
     apt autoremove -y --purge && \
-    apt clean --purge && \
+    apt clean && \
     rm -rf /var/lib/apt /root/.launchpadlib && \
     wget https://raw.githubusercontent.com/tj/n/master/bin/n -O /tmp/n && \
     bash /tmp/n lts && \
