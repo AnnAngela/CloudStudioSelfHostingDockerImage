@@ -6,9 +6,9 @@ RUN /bin/bash -c '\
     rm -f /etc/update-motd.d/60-unminimize && \
     apt update && \
     apt install -y -o "Dpkg::Options::=--force-confold" --no-install-recommends curl wget ca-certificates nano openssh-server openssh-client git libpam-systemd- && \
-    apt autoremove -y && \
-    apt clean && \
-    rm -rf /var/lib/apt/lists/* /root/.launchpadlib && \
+    apt autoremove -y --purge && \
+    apt clean --purge && \
+    rm -rf /var/lib/apt /root/.launchpadlib && \
     wget https://raw.githubusercontent.com/tj/n/master/bin/n -O /tmp/n && \
     bash /tmp/n lts && \
     rm /tmp/n && \
