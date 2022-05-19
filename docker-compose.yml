@@ -17,7 +17,7 @@
 version: '3'
 services:
   cloudstudio:
-    image: nnangela/cloudstudio_selfhosting:latest
+    image: annangela/cloudstudio_selfhosting:latest
     restart: unless-stopped
     hostname: cloudstudio
     stop_grace_period: 1s # sshd don't interactive with kill signal, and can be killed safely.
