@@ -10,23 +10,26 @@ on:
   push:
     branches: [ master ]
     paths:
-    - 'base.Dockerfile'
-    - '.github/workflows/docker-base.yml'
+    - '*.Dockerfile'
+    - '.github/workflows/docker.yml'
   pull_request:
     branches: [ master ]
     paths:
-    - 'Dockerfile'
-    - '.github/workflows/docker-base.yml'
-
-env:
-  IMAGE_NAME: annangela/cloudstudio_selfhosting
+    - '*.Dockerfile'
+    - '.github/workflows/docker.yml'
 
 jobs:
   build:
-
+    strategy:
+      fail-fast: true
+      max-parallel: 1
+      matrix:
+        image: [base, php]
     runs-on: ubuntu-latest
     permissions:
       contents: read
+    env:
+      IMAGE_OWNER: annangela
 
     steps:
       - name: Checkout repository
@@ -48,11 +51,11 @@ jobs:
 
       # Extract metadata (tags, labels) for Docker
       # https://github.com/docker/metadata-action
-      - name: Extract Docker metadata
+      - name: Extract Docker metadata for ${{ env.IMAGE_OWNER }}/${{ matrix.image }}
         id: meta
         uses: docker/metadata-action@v4
         with:
-          images: docker.io/${{ env.IMAGE_NAME }}
+          images: docker.io/${{ env.IMAGE_OWNER }}/${{ matrix.image }}
           tags: |
             type=raw,value=latest
             type=sha,format=long,prefix={{date 'Y-MM-DDTHH-mm-ss[Z]'}}_
