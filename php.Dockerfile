@@ -10,4 +10,5 @@ RUN /bin/bash -c '\
     apt autoremove -y --purge && \
     apt clean && \
     rm -rf /var/lib/apt /root/.launchpadlib && \
+    wget https://getcomposer.org/installer -O - -q | php --
     echo "done"'
