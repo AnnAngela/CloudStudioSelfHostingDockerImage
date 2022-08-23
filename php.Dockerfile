@@ -2,6 +2,7 @@ FROM annangela/cloudstudio_selfhosting:latest AS main
 RUN /bin/bash -c '\
     export DEBIAN_FRONTEND=noninteractive && \
     export DEBIAN_PRIORITY=critical && \
+    apt update && apt install -y -o "Dpkg::Options::=--force-confold" --no-install-recommends gnupg && \
     echo "deb https://ppa.launchpadcontent.net/ondrej/php/ubuntu bionic main" >> /etc/apt/source.list && echo "deb-src https://ppa.launchpadcontent.net/ondrej/php/ubuntu bionic main" >> /etc/apt/source.list && \
     apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 14AA40EC0831756756D7F66C4F4EA0AAE5267A6C && \
     apt update && \
