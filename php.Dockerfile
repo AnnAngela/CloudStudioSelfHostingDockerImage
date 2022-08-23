@@ -10,5 +10,5 @@ RUN /bin/bash -c '\
     apt autoremove -y --purge && \
     apt clean && \
     rm -rf /var/lib/apt /root/.launchpadlib && \
-    wget https://getcomposer.org/installer -O - -q | php -- && \
+    wget https://getcomposer.org/installer -O - -q | php -- && mv composer.phar /usr/local/bin/composer && chmod +x /usr/local/bin/composer && echo "export COMPOSER_ALLOW_SUPERUSER=1" >> /root/.bashrc && \
     echo "done"'
