@@ -18,6 +18,7 @@ There are two images: [annangela/cloudstudio_selfhosting](https://hub.docker.com
 |                                                node | latest lts version using [nodejs version manager `n`](https://github.com/tj/n)                             |
 |                                                 npm | latest version (explicitly set environment variabl `N_PRESERVE_NPM` to `1`)                                |
 |                                             **php** | **latest current stable version from [ppa:ondrej/php](https://launchpad.net/~ondrej/+archive/ubuntu/php)** |
+|                                        **composer** | **latest version from [getcomposer.org](https://getcomposer.org/)**                                        |
 
 ## docker compose detail
 
