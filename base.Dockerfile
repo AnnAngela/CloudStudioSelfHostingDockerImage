@@ -10,7 +10,7 @@ RUN /bin/bash -c '\
     apt clean && \
     rm -rf /var/lib/apt /root/.launchpadlib && \
     wget https://raw.githubusercontent.com/tj/n/master/bin/n -O /tmp/n && \
-    bash /tmp/n lts && \
+    bash /tmp/n 16 && \
     rm /tmp/n && \
     echo "export N_PRESERVE_NPM=1" | tee -a /root/.bashrc && \
     /usr/local/bin/npm install npm n --location=global && \
