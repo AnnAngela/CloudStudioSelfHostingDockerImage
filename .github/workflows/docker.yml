@@ -60,6 +60,7 @@ jobs:
       # https://github.com/docker/metadata-action
       - name: Extract Docker metadata for ${{ env.IMAGE_OWNER }}/${{ matrix.image }}
         id: meta
+        if: github.event_name != 'pull_request'
         uses: docker/metadata-action@v4
         with:
           images: docker.io/${{ env.IMAGE_OWNER }}/${{ matrix.image }}
