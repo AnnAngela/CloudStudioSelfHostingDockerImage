@@ -13,7 +13,7 @@ RUN /bin/bash -c '\
     bash /tmp/n 16 && \
     rm /tmp/n && \
     echo "export N_PRESERVE_NPM=1" | tee -a /root/.bashrc && \
-    /usr/local/bin/npm install npm n --location=global && \
+    /usr/local/bin/npm install npm@9 n --location=global && \
     rm -rf /root/.npm && \
     mkdir -p /root/.npm && \
     echo "done."'
