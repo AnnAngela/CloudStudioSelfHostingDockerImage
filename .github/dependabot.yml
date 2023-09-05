@@ -5,11 +5,20 @@
 
 version: 2
 updates:
-  - package-ecosystem: "github-actions"
-    directory: "/"
+  - package-ecosystem: github-actions
+    directory: /
     schedule:
-      interval: "daily"
-      time: "08:15"
-      timezone: "Asia/Shanghai"
+      interval: daily
+      time: '07:30'
+      timezone: Asia/Shanghai
     commit-message:
-      prefix: "github-actions"
+      prefix: gha
+      include: scope
+    assignees:
+      - AnnAngela
+    reviewers:
+      - AnnAngela
+    groups:
+      gha:
+        patterns:
+          - "*"
