@@ -46,13 +46,13 @@ jobs:
 
       # Workaround: https://github.com/docker/build-push-action/issues/461
       - name: Setup Docker buildx
-        uses: docker/setup-buildx-action@v2
+        uses: docker/setup-buildx-action@v3
 
       # Login against a Docker registry except on PR
       # https://github.com/docker/login-action
       - name: Log into registry docker.io
         if: github.event_name != 'pull_request'
-        uses: docker/login-action@v2
+        uses: docker/login-action@v3
         with:
           registry: docker.io
           username: annangela
@@ -63,7 +63,7 @@ jobs:
       - name: Extract Docker metadata for ${{ env.IMAGE_OWNER }}/${{ matrix.image }}
         id: meta
         if: github.event_name != 'pull_request'
-        uses: docker/metadata-action@v4
+        uses: docker/metadata-action@v5
         with:
           images: docker.io/${{ env.IMAGE_OWNER }}/${{ matrix.image }}
           tags: |
@@ -74,7 +74,7 @@ jobs:
       # https://github.com/docker/build-push-action
       - name: Build from ${{ matrix.dockerFile }} and push Docker image
         id: build-and-push
-        uses: docker/build-push-action@v4
+        uses: docker/build-push-action@v5
         with:
           context: .
           file: ${{ matrix.dockerFile }}
